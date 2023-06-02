@@ -1,0 +1,40 @@
+<tr>
+    <form method="post" action="../database/product/edit_product.php">
+        <td>
+            <input name="product_name" class="product_id!product_id! products_input" value='!product_name!' readonly>
+        </td>
+        <td>
+            <input name="price" class="product_id!product_id! products_input" value='!product_price!' readonly>
+        </td>
+        <td>
+            <input name="manufacturer" class="product_id!product_id! products_input" value='!product_manufacturer!' readonly>
+        </td>
+        <td>
+            <input name="date" class="product_id!product_id! products_input" value='!product_date!' readonly>
+        </td>
+        <td class="btn-wrap">
+            <button id="edit" type="button" onclick="changeInputReadonly!product_id!()"><i class="fas fa-edit"></i><i class="fa-regular fa-money-check-pen"></i></button>
+            <br>
+            <button id="confirm" type="submit" name="product_id" value="!product_id!"><i class="fas fa-check-circle"></i></button>
+    </form>
+    <form method="post" action='../database/product/delete_product.php'>
+        <button id="delete" type="submit" name="product_id" value="!product_id!"><i class="far fa-trash-alt"></i></button>
+    </form>
+</td>
+
+</tr>
+<script>
+    let changeInputReadonly!product_id! = () => {
+        let targets = document.getElementsByClassName("product_id!product_id!");
+        console.log(targets);
+        for ( let i = 0; i < targets.length; i++ ) {
+            if ( targets[i].readOnly ) {
+                targets[i].readOnly = false;
+                targets[i].style.backgroundColor="#44ddaa";
+            } else {
+                targets[i].readOnly = true;
+                targets[i].style.backgroundColor="#ffffff";
+            }
+        }
+    }
+</script>

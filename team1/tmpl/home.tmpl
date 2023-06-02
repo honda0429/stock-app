@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>ホーム</title>
+<link href="../css/reset.css"rel="stylesheet" type="text/css" >
+<link rel="stylesheet" href="../css/home1.css" type="text/css" >
+<link href="https://fonts.googleapis.com/earlyaccess/kokoro.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho" rel="stylesheet">
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+
+<header>
+   <h1>株式会社ペガサス</h1>
+   <h1>!user_name!</h1>
+   <a href="../view/logout.php">ログアウトはこちら</a>
+</header>
+
+
+</div>
+
+<div id="tabcontrol">
+   <a id= "tabpage1" href="#tabpage1">在庫一覧</a>
+   <a id= "tabpage2" href="#tabpage2">商品ページ</a>
+   <a id= "tabpage3" href="#tabpage3">仕入れ一覧</a>
+</div>
+!flush_message!
+
+<main>
+<div id="tabbody">
+   <div id="tabpage1">
+   <div class="message" >
+   !flush_message!
+   </div>
+  !stocks_list!
+   </div> 
+
+<div id="tabpage2">
+   <div class="message" >
+   !flush_message!
+   </div>
+  !products_list!
+</div>
+
+<div id="tabpage3">
+   <div class="message" >
+   !flush_message!
+   </div>
+<details class="purchase">
+      <summary>
+      <i class="fas fa-plus-circle"></i>
+      </summary>
+          <button onclick="location.href='../database/purchase/output_csv_purchase.php'">
+          <i class="fas fa-file-download"></i>
+          </button> 
+        <form method="POST" action="../database/purchase/add_purchase_list.php">
+			    
+             <table>
+                <tr>
+                    <th>
+                        商品名
+                    </th>
+                    <th>
+                    　個数
+                    </th>
+                    <th>
+                        備考
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                         !pro_items!
+                    </td>
+                    <td>
+                        <input type="text" pattern="^[1-9][0-9]*$" name="quantity"> <!--自然数のみの許可-->
+                    </td>
+                    <td>
+                       <input type="textarea" name="note">
+                    </td>
+                    <td>
+                         <button type="submit" name="add_list">追加</button>
+                    </td>
+                    
+                </tr>
+            </table>
+      	</form>
+        </details>
+
+	    <table>
+		    
+			    <tr>
+				    <th scope="col">ID</th>
+				    <th scope="col">ユーザーID</th>
+				    <th scope="col">商品ID</th>
+				    <th scope="col">個数</th>
+				    <th scope="col">日付</th>
+				    <th scope="col">備考</th>
+			    </tr>
+		    
+		    <tbody>
+		      !list_items!
+		    </tbody>
+	    </table>
+</div>
+</main>
+  
+<script type="text/javascript">
+var tabs = document.getElementById('tabcontrol').getElementsByTagName('a');
+var pages = document.getElementById('tabbody').getElementsByTagName('div');
+
+function changeTab() {
+   var targetid = this.href.substring(this.href.indexOf('#')+1,this.href.length);
+   // var targetid = location.hash.substring(1, location.hash.length);
+   // console.log(location.hash);
+   // console.log(this.href);
+   console.log(targetid);
+   // var targetid = location.hash;
+
+  // let flag = false;
+  for(var i=0; i<pages.length; i++) {
+      if( pages[i].id != targetid ) {
+         pages[i].style.display = "none";
+      } else {
+        // flag = true;
+         pages[i].style.display = "block";
+      }
+   }
+   // if ( !flag ) {
+    // pages[0].style.display = "block";
+   // }
+
+   for(var i=0; i<tabs.length; i++) {
+      tabs[i].style.zIndex = "0";
+   }
+   this.style.zIndex = "10";
+
+   return false;
+}
+
+for(var i=0; i<tabs.length; i++) {
+   tabs[i].onclick = changeTab;
+}
+
+tabs[0].onclick();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+    <details>
+        <summary><i class="fas fa-plus-circle"></i></summary>
+        <form method="post" class="search_form" action ="../database/product/add_product.php "value = "product">
+            <table>
+                <tr>
+                    <th>
+                        名前
+                    </th>
+                    <th>
+                    　価格
+                    </th>
+                    <th>
+                        メーカー
+                    </th>
+                    <th>
+                        発売日
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" name="product_name">
+                    </td>
+                    <td>
+                        <input type="text" name="price">
+                    </td>
+                    <td>
+                        <input type="text" name="manufacturer">
+                    </td>
+                    <td>
+                        <input type="date" name="date">
+                    </td>
+                    <td>
+                        <input type="submit" value="追加">
+                    </td>    
+                </tr>
+            </table>
+        </form>
+        <form class="csv" method="post" action ="../database/product/add_product_by_csv.php" enctype="multipart/form-data">
+            <input id="csv_submit" class="csv" type="file" name="product_file">
+            <input class="csv" type="submit" value="送信">
+        </form>
+    </details>
+    <form method="get" action ="../view/home.php id="search_bar">
+        <input type="text" name="search_product_keyword">
+        <button type="submit"><i class="fas fa-search"></i></button>
+    </form>
+    <table>
+        <tr>
+            <th>
+                名前
+            </th>
+            <th>
+                価格
+            </th>
+            <th>
+                メーカー
+            </th>
+            <th>
+                発売日
+            </th>
+        </tr>
+        !product_rows!
+    </table>
